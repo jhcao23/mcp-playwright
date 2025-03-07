@@ -45,6 +45,18 @@ Here's the Claude Desktop configuration to use the Playwright server:
 }
 ```
 
+## How to build the server for Claude Desktop
+
+```zsh
+npn run build && npm link
+```
+
+```json
+"playwright": {
+  "command": "playwright-mcp-server"
+},
+```
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=executeautomation/mcp-playwright&type=Date)](https://star-history.com/#executeautomation/mcp-playwright&Date)

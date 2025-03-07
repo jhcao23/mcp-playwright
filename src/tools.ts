@@ -9,27 +9,59 @@ export function createToolDefinitions() {
         type: "object",
         properties: {
           url: { type: "string" },
-          width: { type: "number", description: "Viewport width in pixels (default: 1280)" },
-          height: { type: "number", description: "Viewport height in pixels (default: 720)" },
-          timeout: { type: "number", description: "Navigation timeout in milliseconds" },
-          waitUntil: { type: "string", description: "Navigation wait condition" }
+          width: {
+            type: "number",
+            description: "Viewport width in pixels (default: 1280)",
+          },
+          height: {
+            type: "number",
+            description: "Viewport height in pixels (default: 720)",
+          },
+          timeout: {
+            type: "number",
+            description: "Navigation timeout in milliseconds",
+          },
+          waitUntil: {
+            type: "string",
+            description: "Navigation wait condition",
+          },
         },
         required: ["url"],
       },
     },
     {
       name: "playwright_screenshot",
-      description: "Take a screenshot of the current page or a specific element",
+      description:
+        "Take a screenshot of the current page or a specific element",
       inputSchema: {
         type: "object",
         properties: {
           name: { type: "string", description: "Name for the screenshot" },
-          selector: { type: "string", description: "CSS selector for element to screenshot" },
-          width: { type: "number", description: "Width in pixels (default: 800)" },
-          height: { type: "number", description: "Height in pixels (default: 600)" },
-          storeBase64: { type: "boolean", description: "Store screenshot in base64 format (default: true)" },
-          savePng: { type: "boolean", description: "Save screenshot as PNG file (default: false)" },
-          downloadsDir: { type: "string", description: "Custom downloads directory path (default: user's Downloads folder)" },
+          selector: {
+            type: "string",
+            description: "CSS selector for element to screenshot",
+          },
+          width: {
+            type: "number",
+            description: "Width in pixels (default: 800)",
+          },
+          height: {
+            type: "number",
+            description: "Height in pixels (default: 600)",
+          },
+          storeBase64: {
+            type: "boolean",
+            description: "Store screenshot in base64 format (default: true)",
+          },
+          savePng: {
+            type: "boolean",
+            description: "Save screenshot as PNG file (default: false)",
+          },
+          downloadsDir: {
+            type: "string",
+            description:
+              "Custom downloads directory path (default: user's Downloads folder)",
+          },
         },
         required: ["name"],
       },
@@ -40,7 +72,10 @@ export function createToolDefinitions() {
       inputSchema: {
         type: "object",
         properties: {
-          selector: { type: "string", description: "CSS selector for the element to click" },
+          selector: {
+            type: "string",
+            description: "CSS selector for the element to click",
+          },
         },
         required: ["selector"],
       },
@@ -51,8 +86,15 @@ export function createToolDefinitions() {
       inputSchema: {
         type: "object",
         properties: {
-          iframeSelector: { type: "string", description: "CSS selector for the iframe containing the element to click" },
-          selector: { type: "string", description: "CSS selector for the element to click" },
+          iframeSelector: {
+            type: "string",
+            description:
+              "CSS selector for the iframe containing the element to click",
+          },
+          selector: {
+            type: "string",
+            description: "CSS selector for the element to click",
+          },
         },
         required: ["iframeSelector", "selector"],
       },
@@ -63,7 +105,10 @@ export function createToolDefinitions() {
       inputSchema: {
         type: "object",
         properties: {
-          selector: { type: "string", description: "CSS selector for input field" },
+          selector: {
+            type: "string",
+            description: "CSS selector for input field",
+          },
           value: { type: "string", description: "Value to fill" },
         },
         required: ["selector", "value"],
@@ -75,7 +120,10 @@ export function createToolDefinitions() {
       inputSchema: {
         type: "object",
         properties: {
-          selector: { type: "string", description: "CSS selector for element to select" },
+          selector: {
+            type: "string",
+            description: "CSS selector for element to select",
+          },
           value: { type: "string", description: "Value to select" },
         },
         required: ["selector", "value"],
@@ -87,7 +135,10 @@ export function createToolDefinitions() {
       inputSchema: {
         type: "object",
         properties: {
-          selector: { type: "string", description: "CSS selector for element to hover" },
+          selector: {
+            type: "string",
+            description: "CSS selector for element to hover",
+          },
         },
         required: ["selector"],
       },
@@ -109,7 +160,7 @@ export function createToolDefinitions() {
       inputSchema: {
         type: "object",
         properties: {
-          url: { type: "string", description: "URL to perform GET operation" }
+          url: { type: "string", description: "URL to perform GET operation" },
         },
         required: ["url"],
       },
@@ -156,7 +207,10 @@ export function createToolDefinitions() {
       inputSchema: {
         type: "object",
         properties: {
-          url: { type: "string", description: "URL to perform DELETE operation" }
+          url: {
+            type: "string",
+            description: "URL to perform DELETE operation",
+          },
         },
         required: ["url"],
       },
@@ -173,7 +227,7 @@ export const BROWSER_TOOLS = [
   "playwright_fill",
   "playwright_select",
   "playwright_hover",
-  "playwright_evaluate"
+  "playwright_evaluate",
 ];
 
 // API Request tools for conditional launch
@@ -182,5 +236,5 @@ export const API_TOOLS = [
   "playwright_post",
   "playwright_put",
   "playwright_delete",
-  "playwright_patch"
+  "playwright_patch",
 ];

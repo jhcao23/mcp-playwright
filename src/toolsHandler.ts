@@ -2,11 +2,11 @@ import type { CallToolResult, ImageContent, TextContent } from '@modelcontextpro
 import fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
-import { APIRequestContext, Browser, chromium, Page, request } from 'playwright';
+import { APIRequestContext, BrowserContext, chromium, Page, request } from 'playwright';
 import { API_TOOLS, BROWSER_TOOLS } from './tools.js';
 
 // Global state
-let browser: Browser | undefined;
+let context: BrowserContext | undefined;
 let page: Page | undefined;
 const consoleLogs: string[] = [];
 const screenshots = new Map<string, string>();
@@ -19,14 +19,23 @@ type ViewportSize = {
 };
 
 async function ensureBrowser(viewport?: ViewportSize) {
-  if (!browser) {
-    browser = await chromium.launch({ headless: false });
-    const context = await browser.newContext({
-      viewport: {
-        width: viewport?.width ?? 1280,
-        height: viewport?.height ?? 720,
-      },
-      deviceScaleFactor: 1,
+  if (!context) {
+    const userDataDir = path.join(os.homedir(), 'Library/Application Support/BraveSoftware/Brave-Browser/Profile2');
+    
+    context = await chromium.launchPersistentContext(userDataDir, {
+      headless: false,
+      executablePath: '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
+      args: [
+        '--disable-infobars',
+        '--disable-blink-features=AutomationControlled',
+        '--no-default-browser-check',
+        '--no-first-run',
+        '--disable-extensions',
+        '--disable-popup-blocking',
+        '--disable-save-password-bubble',
+        '--start-maximized'
+      ],
+      viewport: null
     });
 
     page = await context.newPage();
@@ -227,7 +236,6 @@ export async function handleToolCall(
         };
       } catch (error) {
         return {
-
           content: [{
             type: "text",
             text: `Failed to type ${args.selector}: ${(error as Error).message}`,
