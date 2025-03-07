@@ -37,31 +37,13 @@ export function createToolDefinitions() {
         type: "object",
         properties: {
           name: { type: "string", description: "Name for the screenshot" },
-          selector: {
-            type: "string",
-            description: "CSS selector for element to screenshot",
-          },
-          width: {
-            type: "number",
-            description: "Width in pixels (default: 800)",
-          },
-          height: {
-            type: "number",
-            description: "Height in pixels (default: 600)",
-          },
-          storeBase64: {
-            type: "boolean",
-            description: "Store screenshot in base64 format (default: true)",
-          },
-          savePng: {
-            type: "boolean",
-            description: "Save screenshot as PNG file (default: false)",
-          },
-          downloadsDir: {
-            type: "string",
-            description:
-              "Custom downloads directory path (default: user's Downloads folder)",
-          },
+          selector: { type: "string", description: "CSS selector for element to screenshot" },
+          width: { type: "number", description: "Width in pixels (default: 800)" },
+          height: { type: "number", description: "Height in pixels (default: 600)" },
+          storeBase64: { type: "boolean", description: "Store screenshot in base64 format (default: true)" },
+          fullPage: { type: "boolean", description: "Store screenshot of the entire page (default: false)" },
+          savePng: { type: "boolean", description: "Save screenshot as PNG file (default: false)" },
+          downloadsDir: { type: "string", description: "Custom downloads directory path (default: user's Downloads folder)" },
         },
         required: ["name"],
       },
