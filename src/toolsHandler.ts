@@ -20,11 +20,12 @@ type ViewportSize = {
 
 async function ensureBrowser(viewport?: ViewportSize) {
   if (!context) {
-    const userDataDir = path.join(os.homedir(), 'Library/Application Support/BraveSoftware/Brave-Browser/Profile2');
-    
+    const userDataDir = process.env.BROWSER_USER_DATA_DIR || path.join(os.homedir(), 'Library/Application Support/BraveSoftware/Brave-Browser/Profile2');
+    const executablePath = process.env.BROWSER_EXECUTABLE_PATH || '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser';
+
     context = await chromium.launchPersistentContext(userDataDir, {
       headless: false,
-      executablePath: '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
+      executablePath: executablePath,
       args: [
         '--disable-infobars',
         '--disable-blink-features=AutomationControlled',
